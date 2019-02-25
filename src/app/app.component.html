@@ -1,21 +1,71 @@
-<!--The content below is only a placeholder and can be replaced.-->
-<div style="text-align:center">
-  <h1>
-    Welcome to {{ title }}!
-  </h1>
-  <img width="300" alt="Angular Logo" src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAyNTAgMjUwIj4KICAgIDxwYXRoIGZpbGw9IiNERDAwMzEiIGQ9Ik0xMjUgMzBMMzEuOSA2My4ybDE0LjIgMTIzLjFMMTI1IDIzMGw3OC45LTQzLjcgMTQuMi0xMjMuMXoiIC8+CiAgICA8cGF0aCBmaWxsPSIjQzMwMDJGIiBkPSJNMTI1IDMwdjIyLjItLjFWMjMwbDc4LjktNDMuNyAxNC4yLTEyMy4xTDEyNSAzMHoiIC8+CiAgICA8cGF0aCAgZmlsbD0iI0ZGRkZGRiIgZD0iTTEyNSA1Mi4xTDY2LjggMTgyLjZoMjEuN2wxMS43LTI5LjJoNDkuNGwxMS43IDI5LjJIMTgzTDEyNSA1Mi4xem0xNyA4My4zaC0zNGwxNy00MC45IDE3IDQwLjl6IiAvPgogIDwvc3ZnPg==">
+<div class="container">
+
+  <div style="padding: 285px; margin-top: 115px; background: bisque; height: 100px">
+    <form [formGroup]="employeeForm" (ngSubmit)="onSubmit()" style="margin-top: -210px;">
+      <div class="form-group">
+        <label for="fullName">Full Name:</label>
+        <input type="text" class="form-control" id="fullName" formControlName="fullName">
+        
+        
+        <span *ngIf="employeeForm.get('fullName').errors && (employeeForm.get('fullName').touched || employeeForm.get('fullName').dirty)" style="color: red ">
+        <span *ngIf="employeeForm.get('fullName').errors.required" style="color: red ">
+          Full Name is required
+        </span>
+        <span *ngIf="employeeForm.get('fullName').errors.minlength || employeeForm.get('fullName').errors.maxlength" style="color: red ">
+          Full Name must not be less than 2 characters and not more than 30 characters
+        </span>
+        </span>
+
+
+      </div>
+      <div class="form-group">
+        <label for="email">Email address:</label>
+        <input type="email" class="form-control" id="email" formControlName="email">
+      </div>
+
+
+      <div formGroupName="skills">
+
+        <div class="form-group">
+          <label for="fullName">Skill Name:</label>
+          <input type="text" class="form-control" id="fullName" formControlName="skillName">
+        </div>
+        <div class="form-group">
+          <label for="experience">Experience in years:</label>
+          <input type="text" class="form-control" id="experience" formControlName="experienceInYears">
+        </div>
+
+        <label>Proficiency:</label><br>
+
+        <div class="custom-control custom-radio custom-control-inline">
+          <input type="radio" class="custom-control-input" id="defaultInline1" name="proficiency" value="beginner"
+            formControlName="proficiency">
+          <label class="custom-control-label" for="defaultInline1">Beginner</label>
+        </div>
+
+        <div class="custom-control custom-radio custom-control-inline">
+          <input type="radio" class="custom-control-input" id="defaultInline2" name="proficiency" value="intermediate"
+            formControlName="proficiency">
+          <label class="custom-control-label" for="defaultInline2">Intermediate</label>
+        </div>
+
+        <div class="custom-control custom-radio custom-control-inline">
+          <input type="radio" class="custom-control-input" id="defaultInline3" name="proficiency" value="advanced"
+            formControlName="proficiency">
+          <label class="custom-control-label" for="defaultInline3">Advanced</label>
+        </div>
+
+      </div>
+
+      <div class="row" style="padding: 45px">
+        <button type="submit" class="btn btn-default" style="color:#0baba6;">Submit</button>
+        <button type="button" class="btn btn-default" style="color:cornflowerblue;" (click)="onLoadDataClick()">Load
+          Data</button>
+      </div>
+
+    </form>
+  </div>
+
 </div>
-<h2>Here are some links to help you start: </h2>
-<ul>
-  <li>
-    <h2><a target="_blank" rel="noopener" href="https://angular.io/tutorial">Tour of Heroes</a></h2>
-  </li>
-  <li>
-    <h2><a target="_blank" rel="noopener" href="https://angular.io/cli">CLI Documentation</a></h2>
-  </li>
-  <li>
-    <h2><a target="_blank" rel="noopener" href="https://blog.angular.io/">Angular blog</a></h2>
-  </li>
-</ul>
 
 <router-outlet></router-outlet>
